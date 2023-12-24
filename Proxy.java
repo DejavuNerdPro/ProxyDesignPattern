@@ -1,4 +1,4 @@
-class Proxy implements RealObject {
+public class Proxy implements RealObject {
     private RealObjectImpl realObject;
 
     @Override
