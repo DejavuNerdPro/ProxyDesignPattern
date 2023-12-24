@@ -1,0 +1,62 @@
+The Proxy Pattern is a structural design pattern that provides a surrogate or placeholder for another object to control access to it. In other words, a proxy acts as an intermediary or a representative for an object and allows you to control access to the original object.
+
+There are various scenarios where the Proxy Pattern is useful, such as:
+
+Virtual Proxy: The virtual proxy is used to represent an expensive object. Instead of creating the object and allocating resources when it is not necessary, a virtual proxy can be used to create the object on demand.
+
+Protection Proxy: The protection proxy controls access to a sensitive object by checking permissions before allowing the real object to be accessed.
+
+Remote Proxy: A remote proxy represents an object that is in a different address space. This is often used in distributed systems where objects exist on different machines.
+
+Cache Proxy: A cache proxy stores the results of expensive operations and returns the cached result when the same operations are requested again, instead of redoing the computation.
+
+Logging Proxy: A logging proxy is used to keep a log of method calls on an object, which can be helpful for debugging or auditing purposes.
+
+Here's a simple example in Java to illustrate the Proxy Pattern:
+
+java
+Copy code
+// Subject interface
+interface RealObject {
+    void request();
+}
+
+// RealObject implementation
+class RealObjectImpl implements RealObject {
+    @Override
+    public void request() {
+        System.out.println("RealObject handling request");
+    }
+}
+
+// Proxy class
+class Proxy implements RealObject {
+    private RealObjectImpl realObject;
+
+    @Override
+    public void request() {
+        // Create the real object only when necessary
+        if (realObject == null) {
+            realObject = new RealObjectImpl();
+        }
+        // Additional logic can be added here before or after calling the real object
+        System.out.println("Proxy handling request");
+        realObject.request();
+    }
+}
+
+// Client code
+public class ProxyPatternExample {
+    public static void main(String[] args) {
+        // Using the proxy to access the real object
+        RealObject proxy = new Proxy();
+        proxy.request();
+    }
+}
+Save to grepper
+In this example, the Proxy class acts as a proxy for the RealObjectImpl. It controls access to the real object and can perform additional actions before or after calling the real object's methods.
+
+
+
+
+
