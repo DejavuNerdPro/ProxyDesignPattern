@@ -1,3 +1,3 @@
-interface RealObject {
+public interface RealObject {
     void request();
 }
